@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { View, Text } from "react-native";
 
 export default function App() {
@@ -10,7 +10,7 @@ export default function App() {
         alignItems: "center",
       }}
     >
-      <Text>Universal React with Expo</Text>
+      <Text>yeah React with Expo</Text>
     </View>
   );
 }
