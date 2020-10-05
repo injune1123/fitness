@@ -1,16 +1,15 @@
-import React from "react";
+import React, {Component} from "react";
 import { View, Text } from "react-native";
+import { Ionicons}  from '@expo/vector-icons';
+import AddEntry from './components/AddEntry.js'
+export default class App extends Component {
 
-export default function App() {
-  return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>yeah React with Expo</Text>
-    </View>
-  );
+
+  render(){
+    return (
+      <View>
+        <AddEntry/>
+      </View>
+    );
+  }
 }
