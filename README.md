@@ -1,4 +1,6 @@
-# My Universal React Project
+# Fitness - Your Triathlon Training App
+## A project from React Nano Degree
+### A Universal React Native Project powered by expo.js
 
 <p>
   <!-- iOS -->
