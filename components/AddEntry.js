@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
 import { getMetricMetaInfo, timeToString } from '../utils/helpers'
 import DateHeader from './DateHeader'
-import Slider from './Slider'
+import FitnessSlider from './FitnessSlider'
 import Steppers from './Steppers'
 
 function SubmitBtn ({ onPress }) {
@@ -19,7 +19,7 @@ export default class AddEntry extends Component {
     super(props)
     this.state = {
       run: 0,
-      bike: 110,
+      bike: 0,
       swim: 0,
       sleep: 0,
       eat: 0
@@ -82,7 +82,7 @@ export default class AddEntry extends Component {
             <View key={key}>
               {getIcon()}
               {type==='slider'
-                ? <Slider
+                ? <FitnessSlider
                     value={value}
                     onChange={(value) => this.slide(key,value)}
                     {...rest}
