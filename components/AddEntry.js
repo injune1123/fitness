@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
-import { getMetricMetaInfo, timeToString } from '../utils/helpers'
+import { getMetricMetaInfo, timeToString, getDailyRemainderValue } from '../utils/helpers'
 import DateHeader from './DateHeader'
 import FitnessSlider from './FitnessSlider'
 import Steppers from './Steppers'
 import { Ionicons } from '@expo/vector-icons'
 import TextButton from './TextButton'
 import { submitEntry, removeEntry } from '../utils/api'
+import { connect } from 'react-redux'
+import { addEntry } from '../actions'
 
 function SubmitBtn ({ onPress }) {
   return (
@@ -17,7 +19,7 @@ function SubmitBtn ({ onPress }) {
   )
 }
 
-export default class AddEntry extends Component {
+class AddEntry extends Component {
   constructor (props){
     super(props)
     this.state = {
@@ -34,7 +36,9 @@ export default class AddEntry extends Component {
     const entry = this.state
 
     // Update Redux
-
+    this.props.dispatch(addEntry({
+      [key]: entry
+    }))
     // clear state
     this.setState(() => ({ run: 0, bike: 0, swim: 0, sleep: 0, eat: 0 }))
 
@@ -79,11 +83,14 @@ export default class AddEntry extends Component {
     const key = timeToString()
 
     // Update Redux
-
+    this.props.dispatch(addEntry({
+      [key]: getDailyRemainderValue()
+    }))
     // Route to Home
 
     // Update "DB"(It's not a real db, but asyncstorage,
-    // which can be considered as Mobile version of local storage)    removeEntry(key)
+    // which can be considered as Mobile version of local storage)
+    removeEntry(key)
   }
   render() {
     const metaInfo = getMetricMetaInfo()
@@ -131,3 +138,16 @@ export default class AddEntry extends Component {
     )
   }
 }
+
+function mapStateToProps (state) {
+  const key = timeToString()
+
+  return {
+    alreadyLogged: state[key] && typeof state[key].today === 'undefined'
+    // when typeof state[key].today === 'undefined'
+    // state[key]'s value is the return value of the getDailyRemainderValue function
+    // which is { today: "👋 Don't forget to log your data today!"}
+  }
+}
+
+export default connect(mapStateToProps)(AddEntry)

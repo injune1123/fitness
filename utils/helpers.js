@@ -4,6 +4,11 @@ import { FontAwesome, MaterialIcons, MaterialCommunityIcons } from '@expo/vector
 import { white } from './colors'
 
 // utils/helpers.js
+export function getDailyRemainderValue () {
+  return {
+    today: "👋 Don't forget to log your data today!"
+  }
+}
 
 export function isBetween (num, x, y) {
   if (num >= x && num <= y) {
