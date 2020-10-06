@@ -6,6 +6,7 @@ import FitnessSlider from './FitnessSlider'
 import Steppers from './Steppers'
 import { Ionicons } from '@expo/vector-icons'
 import TextButton from './TextButton'
+import { submitEntry, removeEntry } from '../utils/api'
 
 function SubmitBtn ({ onPress }) {
   return (
@@ -39,8 +40,9 @@ export default class AddEntry extends Component {
 
     // Navigate to home
 
-    // Save to "DB"
-
+    // Save to "DB"(It's not a real db, but asyncstorage,
+    // which can be considered as Mobile version of local storage)
+    submitEntry({key, entry})
     // Clear local notification
   }
 
@@ -80,8 +82,8 @@ export default class AddEntry extends Component {
 
     // Route to Home
 
-    // Update "DB"
-
+    // Update "DB"(It's not a real db, but asyncstorage,
+    // which can be considered as Mobile version of local storage)    removeEntry(key)
   }
   render() {
     const metaInfo = getMetricMetaInfo()
